@@ -1,0 +1,85 @@
+<ng-template #recursiveList let-list>
+
+  <div dndPlaceholderRef class="dndPlaceholder cont">
+  </div>
+
+  <div *ngFor="let item of list"
+       id="{{item.id}}"
+       [dndDraggable]="item"
+       dndEffectAllowed="copyMove"
+       [dndDisableIf]="item.disable"
+       (dndCopied)="onDragged( item, list, 'copy')"
+       (dndMoved)="onDragged( item, list, 'move')"
+       (click)="elementActive($event, item)"
+       [ngStyle]="getStyle(item)"
+       class="cont"
+  >
+
+    <div class="delete" (click)="deleteElement(item, list)">
+      <svg x="0px" y="0px" viewBox="0 0 80 80">
+        <g>
+          <polygon
+            points="40,49.007 15.714,73.293 6.707,64.286 30.993,40 6.707,15.714 15.714,6.707 40,30.993    64.286,6.707 73.293,15.714 49.007,40 73.293,64.286 64.286,73.293  "/>
+          <path
+            d="M15.714,7.414l23.578,23.578L40,31.7l0.707-0.707L64.286,7.414l8.3,8.3L49.007,39.293L48.3,40   l0.707,0.707l23.578,23.579l-8.3,8.3L40.707,49.007L40,48.3l-0.707,0.707L15.714,72.586l-8.3-8.3l23.579-23.579L31.7,40   l-0.707-0.707L7.414,15.714L15.714,7.414 M64.286,6L40,30.286L15.714,6L6,15.714L30.286,40L6,64.286L15.714,74L40,49.714L64.286,74   L74,64.286L49.714,40L74,15.714L64.286,6L64.286,6z"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="handler" *ngIf="item.handle" dndHandle>
+      <svg class="svg-handler" x="0px" y="0px" viewBox="0 0 485.213 485.212">
+        <g>
+          <path d="M363.909,333.584V272.93h-90.976v90.976h60.653l-90.979,121.307l-90.978-121.307h60.654V272.93h-90.978v65.391
+		L0.001,247.346l121.304-90.98v55.916h90.978v-90.978h-60.654L242.607,0l90.979,121.304h-60.653v90.978h90.976v-60.653
+		l121.303,90.978L363.909,333.584z"/>
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+        <g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="title">
+      {{item.props.name}}
+    </div>
+
+    {{item.props.content}}
+
+    <div *ngIf="item.children"
+         class="inserted"
+         dndDropzone
+         [ngStyle]="{display: item.props.display}"
+         (dndDrop)="onDrop($event, item.children)">
+
+      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }">
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<div class="area" [dndDropzone]
+     (dndDrop)="onDrop($event, data.pageList)">
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: data.pageList }">
+  </ng-container>
+</div>

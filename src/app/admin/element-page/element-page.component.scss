@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.areaContainer {
+  width: 100%;
+  height: calc(100vh - 5.5rem);
+  margin: 3px 10px;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+

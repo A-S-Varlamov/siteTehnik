@@ -1,0 +1,82 @@
+aside {
+  position: fixed;
+  left: 0;
+  width: 200px;
+  background-color: #ddd;
+  height: calc(100vh - 5.5rem);
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #999;
+  transition: left 200ms ease-in;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  z-index: 5;
+}
+
+.content {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 8.5rem);
+}
+
+.cont {
+  display: flex;
+  position: relative;
+  left: 0px;
+  width: 115%;
+  transition: all 200ms ease-in;
+}
+
+.close, .swich {
+  cursor: pointer;
+  font-size: 1.3rem;
+  fill: #fff;
+  position: absolute;
+}
+
+.swich svg {
+  transform: rotate(90deg);
+}
+
+.close { right: 10px; }
+
+.swich { left: 10px; }
+
+.close:hover, .swich:hover { fill: #444; }
+
+.title {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 3px;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 5px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.elementsList {
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.element {
+  border: 1px dashed #bbb;
+  background-color: #fff;
+  border-radius: 6px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 0 0 8px 3px #ccc;
+}
+
+.handler {
+  cursor: move;
+  margin: 2px;
+  fill: #777;
+  width: 1rem;
+  height: 1rem;
+  float: right;
+}
+
+
